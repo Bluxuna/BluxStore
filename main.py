@@ -129,15 +129,8 @@ def load_or_create_corpus_embeddings(
 
 def main() -> None:
     """Run a small end-to-end demo."""
-    corpus = [
-        "Distributed systems design patterns",
-        "Transformer architectures for NLP",
-        "Vector databases and indexing strategies",
-        "Approximate nearest neighbor search basics",
-        "Microservices observability and tracing",
-        "Cosine similarity and embedding spaces",
-        "მწვანე ხეები და ტყეები",
-    ]
+    #dataset sample in corpus
+    corpus = []
 
     model_name = "sentence-transformers/all-MiniLM-L6-v2"
     db_path = Path("./blux_store/embeddings.sqlite3")
@@ -151,7 +144,8 @@ def main() -> None:
     engine.add(corpus_embeddings, metadata=metadata)
     engine.build_ivf(n_clusters=2, max_iter=50)
 
-    query_text = "რა არის ბუნებაში კაი?"
+    # query text
+    query_text = ""
     query_embedding = engine.encode_texts([query_text])[0]
 
     print("\\nFlat search (exact):")
